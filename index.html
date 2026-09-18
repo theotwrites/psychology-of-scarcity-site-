@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Psychology of Scarcity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e7e3d6;
+    --paper-2:#f1eee3;
+    --ink:#2a2620;
+    --ink-soft:#5c5646;
+    --brass:#8f6f2e;
+    --brass-deep:#6f5624;
+    --pine:#33504a;
+    --rule:#c9c2ac;
+    --rule-strong:#a89f81;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Libre Franklin", sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--pine);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:4rem 1.5rem 5rem;}
+
+  /* ---- Hero ---- */
+  .kicker{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:500;
+    font-size:1.05rem; color:var(--brass-deep); margin:0 0 0.7rem;
+  }
+  h1{
+    font-family:"Fraunces", serif; font-weight:700;
+    font-size:clamp(2.3rem, 6vw, 3.4rem); line-height:1.05;
+    margin:0 0 1.2rem; letter-spacing:-0.015em; max-width:14ch;
+  }
+  .lede{font-size:1.1rem; color:var(--ink-soft); max-width:56ch; margin:0 0 2.4rem;}
+
+  .hero-cta{display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3.5rem;}
+  .hero-image{width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:3px; margin-bottom:4rem;}
+  .hero-image img{width:100%; height:100%; object-fit:cover; display:block;}
+  .btn{
+    font-family:"Libre Franklin", sans-serif; font-weight:600; font-size:0.92rem;
+    padding:0.75rem 1.4rem; border-radius:3px; text-decoration:none;
+    display:inline-block;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper-2);}
+  .btn-primary:hover{background:var(--brass-deep);}
+  .btn-secondary{background:transparent; color:var(--ink); border:1px solid var(--rule-strong);}
+  .btn-secondary:hover{border-color:var(--pine); color:var(--pine);}
+
+  /* ---- Section shared ---- */
+  section{border-top:1px solid var(--rule-strong); padding:3rem 0;}
+  section:first-of-type{padding-top:0; border-top:none;}
+  .section-kicker{font-size:0.78rem; font-weight:600; color:var(--brass-deep); margin:0 0 0.5rem; letter-spacing:0.01em;}
+  h2{font-family:"Fraunces", serif; font-weight:600; font-size:1.7rem; margin:0 0 0.6rem; max-width:20ch;}
+  .section-sub{color:var(--ink-soft); font-size:1rem; max-width:56ch; margin:0 0 2rem;}
+
+  /* ---- Three doors ---- */
+  .doors{display:flex; flex-direction:column; gap:0; }
+  .door{
+    display:block; text-decoration:none; color:inherit;
+    border-top:1px solid var(--rule); padding:1.6rem 0.4rem;
+  }
+  .doors .door:last-child{border-bottom:1px solid var(--rule);}
+  .door-row{display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem;}
+  .door-name{font-family:"Fraunces", serif; font-weight:600; font-size:1.35rem; color:var(--ink); margin:0 0 0.4rem;}
+  .door-desc{font-size:0.95rem; color:var(--ink-soft); max-width:44ch; margin:0;}
+  .door-go{font-size:0.8rem; color:var(--ink-soft); white-space:nowrap; padding-top:0.3rem; flex-shrink:0;}
+  .door:hover .door-name{color:var(--brass-deep);}
+  .door:hover .door-go{color:var(--pine);}
+
+  /* ---- Toolbox preview ---- */
+  .preview-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:0.9rem; margin-bottom:1.6rem;}
+  .preview-card{
+    background:var(--paper-2); border:1px solid var(--rule-strong); border-radius:3px;
+    padding:1rem 1.1rem;
+  }
+  .preview-cat{font-size:0.68rem; color:var(--brass-deep); font-weight:600; margin:0 0 0.4rem;}
+  .preview-name{font-family:"Fraunces", serif; font-weight:500; font-size:1.05rem; margin:0 0 0.4rem;}
+  .preview-line{font-size:0.85rem; color:var(--ink-soft); margin:0;}
+
+  /* ---- Reading list groups ---- */
+  .groups{display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:0.5rem;}
+  .group-tag{
+    font-size:0.85rem; color:var(--ink-soft); border:1px solid var(--rule-strong);
+    border-radius:20px; padding:0.3rem 0.9rem; text-decoration:none; display:inline-block;
+  }
+  .group-tag:hover{border-color:var(--pine); color:var(--pine);}
+
+  /* ---- About ---- */
+  .about{display:flex; gap:1.8rem; align-items:flex-start; flex-wrap:wrap;}
+  .about-text{flex:1 1 320px;}
+  .about-text p{font-size:0.98rem; color:var(--ink-soft); max-width:52ch; margin:0 0 1rem;}
+  .about-image{flex:0 0 200px; width:200px; aspect-ratio:3/4; overflow:hidden; border-radius:3px;}
+  .about-image img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  footer{
+    border-top:1px solid var(--rule-strong); padding-top:2rem; margin-top:1rem;
+    font-size:0.8rem; color:var(--ink-soft); display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.8rem;
+  }
+  footer a{color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Hero -->
+  <section>
+    <p class="kicker">A book about how scarcity shapes the way we think, choose and become</p>
+    <h1>The Psychology of Scarcity</h1>
+    <p class="lede">This site is a companion to the book — a place to come back to a framework, work out where to start, and keep your own evidence of what's changed.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="where-do-i-start.html">Where do I start?</a>
+      <a class="btn btn-secondary" href="toolbox.html">Browse the toolbox</a>
+    </div>
+    <div class="hero-image">
+      <img src="images/hero.jpg" alt="A heron flying low over still water, reflected beneath it">
+    </div>
+  </section>
+
+  <!-- Three doors -->
+  <section>
+    <p class="section-kicker">Three ways in</p>
+    <h2>Start wherever fits today</h2>
+    <p class="section-sub">There's no required order. Come in through whichever one matches what you actually need right now.</p>
+    <div class="doors">
+      <a class="door" href="where-do-i-start.html">
+        <div class="door-row">
+          <div>
+            <p class="door-name">Where do I start?</p>
+            <p class="door-desc">Pick the situation you're actually in — "I feel behind," "the same difficulty keeps returning" — and get pointed straight to the right framework.</p>
+          </div>
+          <span class="door-go">Take me there &rarr;</span>
+        </div>
+      </a>
+      <a class="door" href="toolbox.html">
+        <div class="door-row">
+          <div>
+            <p class="door-name">The Toolbox</p>
+            <p class="door-desc">All 22 frameworks from the book, searchable and grouped by theme. Each one has a Remember and an Ask Yourself.</p>
+          </div>
+          <span class="door-go">Take me there &rarr;</span>
+        </div>
+      </a>
+      <a class="door" href="memory-bank.html">
+        <div class="door-row">
+          <div>
+            <p class="door-name">Your Memory Bank</p>
+            <p class="door-desc">A private log for the smaller evidence — a decision, a setback, a recovery — tagged to whichever framework it belongs with.</p>
+          </div>
+          <span class="door-go">Take me there &rarr;</span>
+        </div>
+      </a>
+      <a class="door" href="share-your-progress.html">
+        <div class="door-row">
+          <div>
+            <p class="door-name">Share Your Progress</p>
+            <p class="door-desc">A public version of the Memory Bank — send in a moment that changed, for possible feature on the site.</p>
+          </div>
+          <span class="door-go">Take me there &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Toolbox preview -->
+  <section>
+    <p class="section-kicker">From the toolbox</p>
+    <h2>A field guide to the ideas worth carrying</h2>
+    <p class="section-sub">Four of the twenty-two, as a taste of what's there.</p>
+    <div class="preview-grid">
+      <div class="preview-card">
+        <p class="preview-cat">Scarcity &amp; choice</p>
+        <p class="preview-name">Fact and Story</p>
+        <p class="preview-line">A circumstance and the meaning attached to it are not the same thing.</p>
+      </div>
+      <div class="preview-card">
+        <p class="preview-cat">Time &amp; comparison</p>
+        <p class="preview-name">The Comparison Trap</p>
+        <p class="preview-line">Comparison can change the experience of your life even when nothing material has changed.</p>
+      </div>
+      <div class="preview-card">
+        <p class="preview-cat">Path &amp; adaptation</p>
+        <p class="preview-name">The Memory Bank</p>
+        <p class="preview-line">Your own lived evidence can reveal progress that headlines and milestones miss.</p>
+      </div>
+      <div class="preview-card">
+        <p class="preview-cat">Values &amp; becoming</p>
+        <p class="preview-name">Enough</p>
+        <p class="preview-line">Not a universal number — a contextual judgement about what creates stability and freedom.</p>
+      </div>
+    </div>
+    <a class="cta-link" href="toolbox.html" style="font-family:'Fraunces',serif;font-style:italic;color:var(--pine);text-decoration:none;border-bottom:1px solid var(--pine);padding-bottom:2px;">See all 22, searchable →</a>
+  </section>
+
+  <!-- Continue the conversation -->
+  <section>
+    <p class="section-kicker">Beyond this book</p>
+    <h2>Continue the conversation</h2>
+    <p class="section-sub">Nineteen books, grouped by whichever idea stayed with you — not here to validate every framework, just to offer other ways into the same questions.</p>
+    <div class="groups">
+      <a class="group-tag" href="continue-the-conversation.html#scarcity">Scarcity</a>
+      <a class="group-tag" href="continue-the-conversation.html#habits">Habits &amp; change</a>
+      <a class="group-tag" href="continue-the-conversation.html#seasons">Difficult seasons</a>
+      <a class="group-tag" href="continue-the-conversation.html#time">Time &amp; comparison</a>
+      <a class="group-tag" href="continue-the-conversation.html#attention">Attention</a>
+      <a class="group-tag" href="continue-the-conversation.html#character">Character</a>
+      <a class="group-tag" href="continue-the-conversation.html#bigger">Bigger questions</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section>
+    <p class="section-kicker">About</p>
+    <h2>About the book</h2>
+    <div class="about">
+      <div class="about-image">
+        <img src="images/about.jpg" alt="A long shadow cast across cracked sand at low tide">
+      </div>
+      <div class="about-text">
+        <p>The Psychology of Scarcity grew out of lived experience as much as research — the frameworks here were tested against real decisions before they were written down. The book is explicit about which ideas are the author's own and which are drawn from existing research, kept separate rather than blurred together.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>The Psychology of Scarcity</span>
+    <span><a href="toolbox.html">Toolbox</a> &middot; <a href="where-do-i-start.html">Where do I start</a> &middot; <a href="memory-bank.html">Memory Bank</a> &middot; <a href="share-your-progress.html">Share Your Progress</a> &middot; <a href="continue-the-conversation.html">Reading list</a></span>
+  </footer>
+
+</div>
+</body>
+</html>

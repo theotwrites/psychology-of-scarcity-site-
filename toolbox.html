@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Toolbox — The Psychology of Scarcity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e7e3d6;
+    --paper-2:#f1eee3;
+    --ink:#2a2620;
+    --ink-soft:#5c5646;
+    --brass:#8f6f2e;
+    --brass-deep:#6f5624;
+    --pine:#33504a;
+    --rule:#c9c2ac;
+    --rule-strong:#a89f81;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Libre Franklin", sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--pine);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:4rem 1.5rem 5rem;}
+  .home-link{font-size:0.82rem; color:var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom:1.6rem;}
+  .home-link:hover{color:var(--pine);}
+
+  .kicker{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:500;
+    font-size:1.05rem; color:var(--brass-deep); margin:0 0 0.6rem;
+  }
+  h1{
+    font-family:"Fraunces", serif; font-weight:600;
+    font-size:clamp(1.9rem, 5vw, 2.6rem); line-height:1.1;
+    margin:0 0 1rem; letter-spacing:-0.01em;
+  }
+  .lede{font-size:1.05rem; color:var(--ink-soft); max-width:56ch; margin:0 0 0.5rem;}
+  .lede + .lede{margin-bottom:2.2rem;}
+  .lede + .lede + p{margin-bottom:2.2rem;}
+  .header-image{width:100%; aspect-ratio:4/3; max-width:420px; overflow:hidden; border-radius:3px; margin:0 0 2rem;}
+  .header-image img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .controls{
+    display:flex; flex-wrap:wrap; gap:0.7rem; align-items:center;
+    margin-bottom:1rem;
+  }
+  #search{
+    flex:1 1 220px;
+    font-family:"Libre Franklin", sans-serif; font-size:0.96rem;
+    padding:0.6rem 0.8rem; border:1px solid var(--rule-strong);
+    border-radius:3px; background:var(--paper-2); color:var(--ink);
+  }
+  #search::placeholder{color:var(--ink-soft);}
+  #search:focus{outline:2px solid var(--pine); outline-offset:1px;}
+
+  .pills{display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.5rem;}
+  .pill{
+    font-family:"Libre Franklin", sans-serif; font-size:0.8rem;
+    padding:0.45rem 0.85rem; border-radius:20px;
+    border:1px solid var(--rule-strong); background:transparent;
+    color:var(--ink-soft); cursor:pointer; white-space:nowrap;
+  }
+  .pill:focus-visible{outline:2px solid var(--pine); outline-offset:2px;}
+  .pill[aria-pressed="true"]{background:var(--ink); color:var(--paper-2); border-color:var(--ink);}
+  .pill:hover:not([aria-pressed="true"]){border-color:var(--pine); color:var(--pine);}
+
+  #count{font-size:0.8rem; color:var(--ink-soft); margin:0 0 1.5rem;}
+
+  ul.tools{list-style:none; margin:0 0 3rem; padding:0;}
+  .tool{border-top:1px solid var(--rule);}
+  .tool:last-child{border-bottom:1px solid var(--rule);}
+  .tool > button{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:1rem 0.4rem 1rem 0; display:flex; justify-content:space-between;
+    align-items:baseline; gap:1rem; font-family:inherit;
+  }
+  .tool > button:focus-visible{outline:2px solid var(--pine); outline-offset:2px;}
+  .tool-head{display:flex; flex-direction:column; gap:0.15rem; text-align:left;}
+  .cat-label{font-size:0.72rem; color:var(--brass-deep); font-weight:600;}
+  .tool-name{font-family:"Fraunces", serif; font-weight:500; font-size:1.15rem; color:var(--ink);}
+  .chev{font-size:0.8rem; color:var(--ink-soft); flex-shrink:0; padding-top:0.3rem;}
+
+  .tool-body{display:none; padding:0 0.4rem 1.3rem;}
+  .tool.open .tool-body{display:block;}
+  .tool.open .chev{transform:rotate(90deg);}
+  .label{display:block; font-size:0.75rem; font-weight:600; color:var(--pine); margin-bottom:0.2rem;}
+  .remember, .ask{margin:0 0 0.7rem; max-width:58ch; font-size:0.96rem;}
+  .ask{font-style:italic;}
+
+  .empty-state{display:none; padding:2.5rem 0; text-align:center; color:var(--ink-soft); font-style:italic; font-family:"Fraunces", serif;}
+
+  section.connect{border-top:1px solid var(--rule-strong); padding-top:2.5rem; margin-bottom:2.5rem;}
+  section.connect h2{font-family:"Fraunces", serif; font-weight:600; font-size:1.5rem; margin:0 0 0.5rem;}
+  section.connect > p{color:var(--ink-soft); font-size:0.96rem; max-width:58ch; margin:0 0 1.4rem;}
+  .chains{display:flex; flex-direction:column; gap:0.8rem;}
+  .chain{font-size:0.92rem; color:var(--ink-soft); padding-left:0.9rem; border-left:2px solid var(--rule-strong);}
+  .chain b{color:var(--ink); font-weight:600;}
+
+  .cta-row{margin-top:0.5rem; display:flex; gap:1.2rem; flex-wrap:wrap;}
+  .cta{
+    font-family:"Fraunces", serif; font-style:italic;
+    color:var(--pine); text-decoration:none;
+    border-bottom:1px solid var(--pine); padding-bottom:2px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="home-link" href="index.html">&larr; The Psychology of Scarcity</a>
+  <p class="kicker">A field guide to the ideas worth carrying</p>
+  <h1>The Toolbox</h1>
+  <p class="lede">You don't need to remember every chapter, or practise every framework at once. This is a compact place to return when life makes one idea newly relevant.</p>
+  <p class="lede">Each tool has two parts. <b>Remember</b> gives you the central idea. <b>Ask yourself</b> gives you one question that brings it back into contact with your own life.</p>
+
+  <div class="header-image">
+    <img src="images/toolbox-header.jpg" alt="A glass filled with water, close up">
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search — try “comparison” or “time”" aria-label="Search the toolbox">
+  </div>
+  <div class="pills" id="pills" role="group" aria-label="Filter by theme">
+    <button class="pill" data-cat="all" aria-pressed="true">All 22</button>
+    <button class="pill" data-cat="scarcity" aria-pressed="false">Scarcity &amp; choice</button>
+    <button class="pill" data-cat="learning" aria-pressed="false">Learning &amp; practice</button>
+    <button class="pill" data-cat="path" aria-pressed="false">Path &amp; adaptation</button>
+    <button class="pill" data-cat="time" aria-pressed="false">Time &amp; comparison</button>
+    <button class="pill" data-cat="values" aria-pressed="false">Values &amp; becoming</button>
+  </div>
+  <p id="count"></p>
+
+  <ul class="tools" id="list"></ul>
+  <p class="empty-state" id="empty">Nothing matches that search. Try a shorter word, or clear the filter above.</p>
+
+  <section class="connect">
+    <h2>How the frameworks connect</h2>
+    <p>They aren't a ladder to climb in a fixed order — they overlap, and one tends to lead naturally into another as a situation changes.</p>
+    <div class="chains">
+      <div class="chain"><b>Scarcity and choice:</b> Scarcity Response → Scarcity Loop → Fact and Story → a wider choice next time.</div>
+      <div class="chain"><b>Learning and practice:</b> Borrowed Wisdom → Think, Test, Reflect, Adjust → Walking the Path → Earned Wisdom.</div>
+      <div class="chain"><b>Path and adaptation:</b> Building Your Own Path → Antifragility → Memory Bank.</div>
+      <div class="chain"><b>Time and comparison:</b> Biological Time and Artificial Time → Perception Gap → Comparison Trap → a fuller view of context.</div>
+      <div class="chain"><b>Values and becoming:</b> Enough → Ego as Tool → Character as Capacity → Investment or Exploitation? → protecting what's harder to replace.</div>
+    </div>
+  </section>
+
+  <div class="cta-row">
+    <a class="cta" href="where-do-i-start.html">Not sure where to start? →</a>
+    <a class="cta" href="memory-bank.html">Log something in your Memory Bank →</a>
+    <a class="cta" href="continue-the-conversation.html">Continue the conversation →</a>
+  </div>
+
+</div>
+
+<script>
+const TOOLS = [
+  {name:"The Milk Carton", cat:"scarcity", remember:"Scarcity changes more than the amount of a resource; it changes how that resource is experienced.", ask:"What begins to change in me when something important starts running low?"},
+  {name:"Scarcity Response", cat:"scarcity", remember:"Familiar responses to shortage can arrive quickly and automatically, but awareness can create another option.", ask:"What is my first instinct under scarcity — and is it helping in this situation?"},
+  {name:"The Scarcity Loop", cat:"scarcity", remember:"A shortage can narrow attention, trigger a familiar response and shape behaviour; reflection can widen the choice available next time.", ask:"Where in the loop do I usually notice myself — and where could I create a little more space?"},
+  {name:"Fact and Story", cat:"scarcity", remember:"A circumstance and the meaning attached to it are not the same thing.", ask:"What is the fact here, and what story have I added to it?"},
+  {name:"Borrowed Wisdom", cat:"learning", remember:"Borrowed wisdom gives you a useful map before you have travelled the territory yourself.", ask:"Do I know this because I have lived it — or because I have heard it explained well?"},
+  {name:"Earned Wisdom", cat:"learning", remember:"Wisdom becomes more personal when an idea has been tested, complicated, adjusted and integrated through experience.", ask:"What has reality taught me about this that theory did not?"},
+  {name:"Think → Test → Reflect → Adjust", cat:"learning", remember:"Thinking creates direction; testing creates evidence; reflection turns the gap between them into information.", ask:"What belief, plan or value am I willing to let reality test?"},
+  {name:"Taking the Path / Walking the Path", cat:"learning", remember:"Preparation can feel like movement, but the path begins shaping you when the idea enters behaviour.", ask:"What have I actually done — not merely planned — that gives me evidence?"},
+  {name:"Ego as Idol / Ego as Tool", cat:"values", remember:"Ego becomes costly when protecting an image matters more than responding honestly to reality.", ask:"Am I protecting what matters — or protecting an image?"},
+  {name:"Building Your Own Path", cat:"path", remember:"An inherited route can be useful without being a universal guarantee; a lived path develops through contact with reality.", ask:"Is this detour resistance, a mistake to correct, or information the original path could not show me?"},
+  {name:"Antifragility", cat:"path", remember:"Some manageable difficulties can increase future capacity when experience is followed by recovery, reflection and adjustment.", ask:"What do I know now that I did not know the first time?"},
+  {name:"Oscillation", cat:"path", remember:"Balance is not a fixed point. Sustainable capacity moves through intensity, recovery and integration.", ask:"Am I in a season of intensity — or have I forgotten to make space for recovery?"},
+  {name:"Biological Time", cat:"time", remember:"Some pressures are lived immediately: the bill, the fatigue, the waiting, the need that exists now.", ask:"What needs to be respected in the present, rather than dismissed because the long term may be fine?"},
+  {name:"Artificial Time", cat:"time", remember:"Many outcomes become visible only after accumulation: skill, trust, savings, reputation, knowledge and character.", ask:"What am I building that may need more time before it becomes visible?"},
+  {name:"The Perception Gap", cat:"time", remember:"A visible outcome rarely contains its full history; starting resources, timing, risk, costs and luck can remain hidden.", ask:"What invisible history might be missing from the comparison I am making?"},
+  {name:"The Comparison Trap", cat:"time", remember:"Comparison can change the experience of your life even when none of its material facts have changed.", ask:"What did I suddenly believe I was lacking?"},
+  {name:"The Memory Bank", cat:"path", remember:"Your own lived evidence can reveal progress that headlines and milestones miss.", ask:"What can I do, notice or recover from differently now than I could before?"},
+  {name:"Character as Capacity", cat:"values", remember:"Character is not invulnerability. It is the set of capacities repeated choices leave behind: calibration, values, wisdom, resilience and agency.", ask:"Who am I becoming through the way I keep meeting ordinary difficulty?"},
+  {name:"Investment or Exploitation?", cat:"values", remember:"A sacrifice is not automatically worthwhile because it is difficult; test what it builds, what it costs, who benefits and whether you can reassess.", ask:"What am I giving, what am I realistically getting, and what is continuing this asking me to become?"},
+  {name:"Protecting What Is Harder to Replace", cat:"values", remember:"Some gains can be recovered more easily than health, integrity, safety, deep relationships or time at particular stages of life.", ask:"Am I trading something difficult to recover for something comparatively replaceable?"},
+  {name:"Enough", cat:"values", remember:"Enough is not a universal number. It is a contextual judgement about what creates stability, freedom and alignment with what matters.", ask:"What would enough mean here if comparison, fear and performance were quieter?"},
+  {name:"Still Building", cat:"values", remember:"Not arriving does not mean nothing has changed. Progress can appear first in clarity, calibration, recovery and the way you respond when difficulty returns.", ask:"What is different about the person meeting this problem now?"}
+];
+
+const CAT_LABELS = {
+  scarcity:"Scarcity & choice",
+  learning:"Learning & practice",
+  path:"Path & adaptation",
+  time:"Time & comparison",
+  values:"Values & becoming"
+};
+
+const listEl = document.getElementById('list');
+const countEl = document.getElementById('count');
+const emptyEl = document.getElementById('empty');
+const searchInput = document.getElementById('search');
+const pills = document.querySelectorAll('.pill');
+let activeCat = 'all';
+
+function render(){
+  const q = searchInput.value.trim().toLowerCase();
+  listEl.innerHTML = '';
+  let shown = 0;
+  TOOLS.forEach((t, idx) => {
+    const matchesCat = activeCat === 'all' || t.cat === activeCat;
+    const haystack = (t.name + ' ' + t.remember + ' ' + t.ask).toLowerCase();
+    const matchesSearch = q === '' || haystack.includes(q);
+    if(!matchesCat || !matchesSearch) return;
+    shown++;
+    const li = document.createElement('li');
+    li.className = 'tool';
+    li.dataset.idx = idx;
+    li.innerHTML = `
+      <button aria-expanded="false">
+        <span class="tool-head">
+          <span class="cat-label">${CAT_LABELS[t.cat]}</span>
+          <span class="tool-name">${t.name}</span>
+        </span>
+        <span class="chev">&#9656;</span>
+      </button>
+      <div class="tool-body">
+        <span class="label">Remember</span>
+        <p class="remember">${t.remember}</p>
+        <span class="label">Ask yourself</span>
+        <p class="ask">${t.ask}</p>
+      </div>
+    `;
+    const btn = li.querySelector('button');
+    btn.addEventListener('click', () => {
+      const isOpen = li.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    listEl.appendChild(li);
+  });
+  countEl.textContent = shown === TOOLS.length ? `${shown} frameworks` : `${shown} of ${TOOLS.length} frameworks`;
+  emptyEl.style.display = shown === 0 ? 'block' : 'none';
+  listEl.style.display = shown === 0 ? 'none' : 'block';
+}
+
+searchInput.addEventListener('input', render);
+pills.forEach(p => {
+  p.addEventListener('click', () => {
+    pills.forEach(x => x.setAttribute('aria-pressed','false'));
+    p.setAttribute('aria-pressed','true');
+    activeCat = p.dataset.cat;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>

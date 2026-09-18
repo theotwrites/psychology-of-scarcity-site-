@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where Do I Start? — The Psychology of Scarcity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e7e3d6;
+    --paper-2:#f1eee3;
+    --ink:#2a2620;
+    --ink-soft:#5c5646;
+    --brass:#8f6f2e;
+    --brass-deep:#6f5624;
+    --pine:#33504a;
+    --rule:#c9c2ac;
+    --rule-strong:#a89f81;
+    --maxw:680px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Libre Franklin", sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--pine);}
+  .home-link{font-size:0.82rem; color:var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom:1.6rem;}
+  .home-link:hover{color:var(--pine);}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:4rem 1.5rem 5rem;}
+
+  .kicker{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:500;
+    font-size:1.05rem; color:var(--brass-deep); margin:0 0 0.6rem;
+  }
+  h1{
+    font-family:"Fraunces", serif; font-weight:600;
+    font-size:clamp(1.9rem, 5vw, 2.6rem); line-height:1.1;
+    margin:0 0 1rem; letter-spacing:-0.01em;
+  }
+  .lede{font-size:1.05rem; color:var(--ink-soft); max-width:52ch; margin:0 0 2rem;}
+  .header-image{width:100%; aspect-ratio:16/9; max-width:460px; overflow:hidden; border-radius:3px; margin:0 0 2rem;}
+  .header-image img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  #picker.hide, #result.hide{display:none;}
+
+  .situations{list-style:none; margin:0; padding:0;}
+  .situation{
+    border-top:1px solid var(--rule);
+  }
+  .situation:last-child{border-bottom:1px solid var(--rule);}
+  .situation button{
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    font-family:"Fraunces", serif;
+    font-size:1.15rem;
+    color:var(--ink);
+    padding:1.1rem 0.5rem 1.1rem 0;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:1rem;
+  }
+  .situation button:hover{color:var(--brass-deep);}
+  .situation button .go{
+    font-family:"Libre Franklin", sans-serif;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    flex-shrink:0;
+  }
+
+  .fallback{
+    margin-top:2.5rem;
+    padding:1rem 1.2rem;
+    background:var(--paper-2);
+    border:1px dashed var(--rule-strong);
+    border-radius:4px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+  .fallback a{font-weight:600;}
+
+  #result{
+    padding-top:1rem;
+  }
+  .back{
+    background:none; border:none; cursor:pointer;
+    font-family:"Libre Franklin", sans-serif;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    padding:0;
+    margin-bottom:2rem;
+  }
+  .back:hover{color:var(--pine);}
+
+  .you-said{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--brass-deep);
+    margin:0 0 0.3rem;
+  }
+  .begin-with{
+    color:var(--ink-soft);
+    margin:0 0 2rem;
+    font-size:0.95rem;
+  }
+
+  .framework-card{
+    border-top:1px solid var(--rule);
+    padding:1.3rem 0;
+  }
+  .framework-card:last-of-type{border-bottom:1px solid var(--rule);}
+  .framework-card h3{
+    font-family:"Fraunces", serif;
+    font-weight:500;
+    font-size:1.25rem;
+    margin:0 0 0.7rem;
+  }
+  .label{
+    display:block; font-size:0.75rem; font-weight:600;
+    color:var(--pine); margin-bottom:0.2rem;
+  }
+  .remember, .ask{margin:0 0 0.8rem; max-width:56ch;}
+  .remember p, .ask p{margin:0;}
+
+  .cta-row{margin-top:2.2rem; display:flex; gap:1.2rem; flex-wrap:wrap;}
+  .cta{
+    font-family:"Fraunces", serif; font-style:italic;
+    color:var(--pine); text-decoration:none;
+    border-bottom:1px solid var(--pine); padding-bottom:2px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="picker">
+    <a class="home-link" href="index.html">&larr; The Psychology of Scarcity</a>
+    <p class="kicker">Entry points, not prescriptions</p>
+    <h1>Where do I start?</h1>
+    <p class="lede">You don't need to read the whole toolbox to use it. Start with the situation you're actually in — it'll point you to the framework worth opening first.</p>
+
+    <div class="header-image">
+      <img src="images/quiz-header.jpg" alt="A woodland path forking in two directions">
+    </div>
+
+    <ul class="situations" id="situations"></ul>
+
+    <p class="fallback">If none of these quite fits, the simplest distinction in the book still applies: what is the fact here, what story has attached itself to it, and what choice is still available? That's <a href="toolbox.html">Fact and Story</a>, in the full toolbox.</p>
+  </div>
+
+  <div id="result" class="hide">
+    <button class="back" id="backBtn">&larr; Back to situations</button>
+    <p class="you-said" id="youSaid"></p>
+    <p class="begin-with" id="beginWith"></p>
+    <div id="frameworks"></div>
+    <div class="cta-row">
+      <a class="cta" href="toolbox.html">Browse the full toolbox →</a>
+      <a class="cta" href="memory-bank.html">Log this in your Memory Bank →</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const FRAMEWORKS = {
+  "Biological Time": {remember:"Some pressures are lived immediately: the bill, the fatigue, the waiting, the need that exists now.", ask:"What needs to be respected in the present rather than dismissed because the long term may be fine?"},
+  "Artificial Time": {remember:"Many outcomes become visible only after accumulation: skill, trust, savings, reputation, knowledge and character.", ask:"What am I building that may need more time before it becomes visible?"},
+  "The Perception Gap": {remember:"A visible outcome rarely contains its full history; starting resources, timing, risk, costs and luck can remain hidden.", ask:"What invisible history might be missing from the comparison I am making?"},
+  "The Comparison Trap": {remember:"Comparison can change the experience of your life even when none of its material facts have changed.", ask:"What did I suddenly believe I was lacking?"},
+  "Borrowed Wisdom": {remember:"Borrowed wisdom gives you a useful map before you have travelled the territory yourself.", ask:"Do I know this because I have lived it — or because I have heard it explained well?"},
+  "Earned Wisdom": {remember:"Wisdom becomes more personal when an idea has been tested, complicated, adjusted and integrated through experience.", ask:"What has reality taught me about this that theory did not?"},
+  "Taking the Path / Walking the Path": {remember:"Preparation can feel like movement, but the path begins shaping you when the idea enters behaviour.", ask:"What have I actually done — not merely planned — that gives me evidence?"},
+  "Fact and Story": {remember:"A circumstance and the meaning attached to it are not the same thing.", ask:"What is the fact here, and what story have I added to it?"},
+  "Ego as Idol / Ego as Tool": {remember:"Ego becomes costly when protecting an image matters more than responding honestly to reality.", ask:"Am I protecting what matters — or protecting an image?"},
+  "Enough": {remember:"Enough is not a universal number. It is a contextual judgement about what creates stability, freedom and alignment with what matters.", ask:"What would enough mean here if comparison, fear and performance were quieter?"},
+  "Oscillation": {remember:"Balance is not a fixed point. Sustainable capacity moves through intensity, recovery and integration.", ask:"Am I in a season of intensity — or have I forgotten to make space for recovery?"},
+  "Investment or Exploitation?": {remember:"A sacrifice is not automatically worthwhile because it is difficult; test what it builds, what it costs, who benefits and whether you can reassess.", ask:"What am I giving, what am I realistically getting, and what is continuing this asking me to become?"},
+  "The Memory Bank": {remember:"Your own lived evidence can reveal progress that headlines and milestones miss.", ask:"What can I do, notice or recover from differently now than I could before?"},
+  "Antifragility": {remember:"Some manageable difficulties can increase future capacity when experience is followed by recovery, reflection and adjustment.", ask:"What do I know now that I did not know the first time?"}
+};
+
+const SITUATIONS = [
+  {s:"I feel behind.", frameworks:["Biological Time","Artificial Time","The Perception Gap","The Comparison Trap"]},
+  {s:"I know what I should do, but I'm not doing it.", frameworks:["Borrowed Wisdom","Earned Wisdom","Taking the Path / Walking the Path"]},
+  {s:"A number, status marker or setback is starting to feel like a judgement on me.", frameworks:["Fact and Story","Ego as Idol / Ego as Tool"]},
+  {s:"I don't know what \u201cenough\u201d means anymore.", frameworks:["Enough"]},
+  {s:"I'm stretched and think I should simply push harder.", frameworks:["Oscillation"]},
+  {s:"I can't tell whether a sacrifice is worth making.", frameworks:["Investment or Exploitation?"]},
+  {s:"The same kind of difficulty keeps returning.", frameworks:["The Memory Bank","Antifragility"]}
+];
+
+const listEl = document.getElementById("situations");
+SITUATIONS.forEach((item, i)=>{
+  const li = document.createElement("li");
+  li.className = "situation";
+  li.innerHTML = `<button data-i="${i}">${item.s}<span class="go">Begin here &rarr;</span></button>`;
+  listEl.appendChild(li);
+});
+
+const pickerEl = document.getElementById("picker");
+const resultEl = document.getElementById("result");
+const youSaidEl = document.getElementById("youSaid");
+const beginWithEl = document.getElementById("beginWith");
+const frameworksEl = document.getElementById("frameworks");
+
+listEl.addEventListener("click", (e)=>{
+  const btn = e.target.closest("button[data-i]");
+  if(!btn) return;
+  const item = SITUATIONS[parseInt(btn.dataset.i, 10)];
+  showResult(item);
+});
+
+document.getElementById("backBtn").addEventListener("click", ()=>{
+  resultEl.classList.add("hide");
+  pickerEl.classList.remove("hide");
+});
+
+function showResult(item){
+  youSaidEl.textContent = "\u201c" + item.s + "\u201d";
+  beginWithEl.textContent = "Begin with " + item.frameworks.join(", then ") + ".";
+  frameworksEl.innerHTML = "";
+  item.frameworks.forEach(name=>{
+    const f = FRAMEWORKS[name];
+    const div = document.createElement("div");
+    div.className = "framework-card";
+    div.innerHTML = `
+      <h3>${name}</h3>
+      <div class="remember"><span class="label">Remember</span><p>${f.remember}</p></div>
+      <div class="ask"><span class="label">Ask yourself</span><p>${f.ask}</p></div>
+    `;
+    frameworksEl.appendChild(div);
+  });
+  pickerEl.classList.add("hide");
+  resultEl.classList.remove("hide");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+</script>
+</body>
+</html>

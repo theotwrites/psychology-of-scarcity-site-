@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Your Progress — The Psychology of Scarcity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e7e3d6; --paper-2:#f1eee3; --ink:#2a2620; --ink-soft:#5c5646;
+    --brass:#8f6f2e; --brass-deep:#6f5624; --pine:#33504a;
+    --rule:#c9c2ac; --rule-strong:#a89f81; --maxw:640px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"Libre Franklin", sans-serif; line-height:1.5; -webkit-font-smoothing:antialiased;}
+  a{color:var(--pine);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:4rem 1.5rem 5rem;}
+  .home-link{font-size:0.82rem; color:var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom:1.6rem;}
+  .home-link:hover{color:var(--pine);}
+  .kicker{font-family:"Fraunces", serif; font-style:italic; font-weight:500; font-size:1.05rem; color:var(--brass-deep); margin:0 0 0.6rem;}
+  h1{font-family:"Fraunces", serif; font-weight:600; font-size:clamp(1.9rem, 5vw, 2.4rem); line-height:1.1; margin:0 0 1rem; letter-spacing:-0.01em;}
+  .lede{font-size:1.02rem; color:var(--ink-soft); max-width:56ch; margin:0 0 0.8rem;}
+  .lede + .lede{margin-bottom:2.2rem;}
+
+  .notice{
+    font-size:0.88rem; color:var(--ink-soft); background:var(--paper-2);
+    border:1px solid var(--rule-strong); border-radius:3px; padding:0.9rem 1.1rem;
+    margin:0 0 2.2rem;
+  }
+
+  form{display:flex; flex-direction:column; gap:1.3rem;}
+  .field label{display:block; font-size:0.82rem; font-weight:600; color:var(--ink); margin-bottom:0.35rem;}
+  .field .optional{font-weight:400; color:var(--ink-soft); font-style:italic;}
+  .field input[type="text"],
+  .field textarea,
+  .field select{
+    width:100%; font-family:"Libre Franklin", sans-serif; font-size:0.96rem;
+    padding:0.65rem 0.8rem; border:1px solid var(--rule-strong); border-radius:3px;
+    background:var(--paper-2); color:var(--ink);
+  }
+  .field textarea{min-height:110px; resize:vertical;}
+  .field input:focus, .field textarea:focus, .field select:focus{outline:2px solid var(--pine); outline-offset:1px;}
+
+  .file-field{
+    border:1px dashed var(--rule-strong); border-radius:3px; padding:1.2rem;
+    background:var(--paper-2); text-align:center;
+  }
+  .file-field input[type="file"]{font-family:"Libre Franklin", sans-serif; font-size:0.9rem; width:100%;}
+  .file-hint{font-size:0.78rem; color:var(--ink-soft); margin-top:0.5rem;}
+
+  .consent{display:flex; gap:0.6rem; align-items:flex-start; font-size:0.88rem; color:var(--ink-soft);}
+  .consent input{margin-top:0.25rem;}
+
+  /* honeypot field, hidden from real visitors */
+  .hp{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;}
+
+  button.submit{
+    font-family:"Libre Franklin", sans-serif; font-weight:600; font-size:0.94rem;
+    padding:0.8rem 1.5rem; border-radius:3px; border:none;
+    background:var(--ink); color:var(--paper-2); cursor:pointer; align-self:flex-start;
+  }
+  button.submit:hover{background:var(--brass-deep);}
+  button.submit:disabled{opacity:0.6; cursor:not-allowed;}
+
+  #successState{display:none; text-align:center; padding:3rem 0;}
+  #successState.show{display:block;}
+  #successState .big{font-family:"Fraunces", serif; font-style:italic; font-size:1.4rem; color:var(--pine); margin:0 0 0.8rem;}
+  #successState p{color:var(--ink-soft); font-size:0.96rem; max-width:44ch; margin:0 auto;}
+
+  .error-msg{font-size:0.85rem; color:#a0392c; margin:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="home-link" href="index.html">&larr; The Psychology of Scarcity</a>
+
+  <div id="formState">
+    <p class="kicker">Your evidence, shared</p>
+    <h1>Share Your Progress</h1>
+    <p class="lede">If something from the book or the Toolbox actually changed how you handled a moment — a decision, a recovery, a smaller version of the thing you used to do — you're welcome to share it here.</p>
+    <p class="lede">This isn't your private Memory Bank; it's a public one. A small selection of what's shared here may be featured on the site.</p>
+
+    <p class="notice">Nothing you submit appears automatically. Every submission is reviewed before anything is shown publicly, and only what you explicitly agree to share below will ever be considered.</p>
+
+    <form name="progress-share" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="shareForm" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="progress-share">
+      <p class="hp">
+        <label>Don't fill this in if you're human: <input name="bot-field"></label>
+      </p>
+
+      <div class="field">
+        <label for="name">Name <span class="optional">(optional — "Anonymous" is fine)</span></label>
+        <input type="text" id="name" name="name" placeholder="How you'd like to be credited, if at all">
+      </div>
+
+      <div class="field">
+        <label for="framework">Which framework does this connect to? <span class="optional">(optional)</span></label>
+        <select id="framework" name="framework">
+          <option value="">Not sure / doesn't fit one neatly</option>
+          <option>The Milk Carton</option>
+          <option>Scarcity Response</option>
+          <option>The Scarcity Loop</option>
+          <option>Fact and Story</option>
+          <option>Borrowed Wisdom</option>
+          <option>Earned Wisdom</option>
+          <option>Think, Test, Reflect, Adjust</option>
+          <option>Taking the Path / Walking the Path</option>
+          <option>Ego as Idol / Ego as Tool</option>
+          <option>Building Your Own Path</option>
+          <option>Antifragility</option>
+          <option>Oscillation</option>
+          <option>Biological Time</option>
+          <option>Artificial Time</option>
+          <option>The Perception Gap</option>
+          <option>The Comparison Trap</option>
+          <option>The Memory Bank</option>
+          <option>Character as Capacity</option>
+          <option>Investment or Exploitation?</option>
+          <option>Protecting What Is Harder to Replace</option>
+          <option>Enough</option>
+          <option>Still Building</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="caption">What happened <span class="optional">(a few sentences is plenty)</span></label>
+        <textarea id="caption" name="caption" placeholder="What the photo shows, and what actually changed" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="photo">A photo <span class="optional">(optional — words alone are welcome too)</span></label>
+        <div class="file-field">
+          <input type="file" id="photo" name="photo" accept="image/*">
+          <p class="file-hint">JPG or PNG, under 8MB. A phone photo is exactly the right amount of polish.</p>
+        </div>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" name="consent" required>
+        <span>I understand this may be reviewed and, if selected, shown publicly on this site alongside what I've written above.</span>
+      </label>
+
+      <p class="error-msg" id="errorMsg"></p>
+      <button type="submit" class="submit" id="submitBtn">Submit for review</button>
+    </form>
+  </div>
+
+  <div id="successState">
+    <p class="big">Thank you — that's been sent for review.</p>
+    <p>It won't appear on the site automatically. If it's featured, it'll show up in a future update. Either way, it's yours, and it counts.</p>
+  </div>
+
+</div>
+
+<script>
+  const form = document.getElementById('shareForm');
+  const errorMsg = document.getElementById('errorMsg');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e){
+    const photo = document.getElementById('photo').files[0];
+    if(photo && photo.size > 8 * 1024 * 1024){
+      e.preventDefault();
+      errorMsg.textContent = "That photo's a bit large — under 8MB works best.";
+      return;
+    }
+    errorMsg.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    // Netlify Forms: submit via fetch so we can show an in-page thank-you
+    // rather than navigating to a separate success page.
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch('/', { method: 'POST', body: data })
+      .then(() => {
+        document.getElementById('formState').style.display = 'none';
+        document.getElementById('successState').classList.add('show');
+      })
+      .catch(() => {
+        errorMsg.textContent = "That didn't send — mind trying again in a moment?";
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit for review';
+      });
+  });
+</script>
+</body>
+</html>

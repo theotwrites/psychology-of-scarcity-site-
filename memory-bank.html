@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Memory Bank — The Psychology of Scarcity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e7e3d6;
+    --paper-2:#f1eee3;
+    --ink:#2a2620;
+    --ink-soft:#5c5646;
+    --brass:#8f6f2e;
+    --brass-deep:#6f5624;
+    --pine:#33504a;
+    --rule:#c9c2ac;
+    --rule-strong:#a89f81;
+    --maxw:680px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Libre Franklin", sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--pine);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:4rem 1.5rem 5rem;}
+  .home-link{font-size:0.82rem; color:var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom:1.6rem;}
+  .home-link:hover{color:var(--pine);}
+
+  .kicker{
+    font-family:"Fraunces", serif; font-style:italic; font-weight:500;
+    font-size:1.05rem; color:var(--brass-deep); margin:0 0 0.6rem;
+  }
+  h1{
+    font-family:"Fraunces", serif; font-weight:600;
+    font-size:clamp(1.9rem, 5vw, 2.6rem); line-height:1.1;
+    margin:0 0 1rem; letter-spacing:-0.01em;
+  }
+  .lede{font-size:1.05rem; color:var(--ink-soft); max-width:54ch; margin:0 0 0.5rem;}
+  .lede + .lede{margin-bottom:2.5rem;}
+  .header-image{width:160px; aspect-ratio:1/1; overflow:hidden; border-radius:3px; margin:0 0 1.6rem;}
+  .header-image img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .notice{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    background:var(--paper-2);
+    border:1px dashed var(--rule-strong);
+    border-radius:4px;
+    padding:0.8rem 1rem;
+    margin:0 0 2.5rem;
+  }
+
+  form{
+    border-top:1px solid var(--rule-strong);
+    border-bottom:1px solid var(--rule-strong);
+    padding:1.8rem 0 2rem;
+    margin-bottom:3rem;
+  }
+  .field{margin-bottom:1.2rem;}
+  .field label{
+    display:block;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--pine);
+    margin-bottom:0.35rem;
+  }
+  .field input[type="text"],
+  .field select,
+  .field textarea{
+    width:100%;
+    font-family:"Libre Franklin", sans-serif;
+    font-size:0.96rem;
+    padding:0.6rem 0.7rem;
+    border:1px solid var(--rule-strong);
+    border-radius:3px;
+    background:var(--paper-2);
+    color:var(--ink);
+  }
+  .field textarea{min-height:5rem; resize:vertical;}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:2px solid var(--pine); outline-offset:1px;
+  }
+  .field .hint{font-size:0.78rem; color:var(--ink-soft); margin-top:0.3rem;}
+
+  .row-2{display:flex; gap:1rem; flex-wrap:wrap;}
+  .row-2 > .field{flex:1; min-width:180px;}
+
+  button.save{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:1rem;
+    background:var(--ink);
+    color:var(--paper-2);
+    border:none;
+    padding:0.65rem 1.4rem;
+    border-radius:3px;
+    cursor:pointer;
+  }
+  button.save:hover{background:var(--brass-deep);}
+
+  h2.section-title{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:1.4rem;
+    margin:0 0 0.3rem;
+  }
+  .section-sub{color:var(--ink-soft); font-size:0.9rem; margin:0 0 1.5rem;}
+
+  ul.log{list-style:none; margin:0; padding:0;}
+  .log-entry{
+    border-top:1px solid var(--rule);
+    padding:1.2rem 0;
+  }
+  .log-entry:last-child{border-bottom:1px solid var(--rule);}
+  .log-meta{
+    display:flex;
+    gap:0.7rem;
+    align-items:baseline;
+    flex-wrap:wrap;
+    margin-bottom:0.4rem;
+  }
+  .log-date{font-size:0.78rem; color:var(--ink-soft);}
+  .log-tag{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    border:1px solid var(--rule-strong);
+    border-radius:20px;
+    padding:0.1rem 0.55rem;
+  }
+  .log-situation{
+    font-family:"Fraunces", serif;
+    font-size:1.1rem;
+    margin:0 0 0.4rem;
+  }
+  .log-reflection{margin:0 0 0.5rem; max-width:58ch;}
+  .log-different{
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    font-style:italic;
+    max-width:58ch;
+  }
+  .log-different strong{color:var(--pine); font-style:normal; font-weight:600;}
+  .log-entry{position:relative;}
+  .log-remove{
+    position:absolute; top:1.2rem; right:0; background:none; border:none;
+    font-family:"Libre Franklin", sans-serif; font-size:0.75rem; color:var(--ink-soft);
+    cursor:pointer; text-decoration:underline; text-underline-offset:2px; padding:0;
+  }
+  .log-remove:hover{color:var(--pine);}
+
+  .empty-log{
+    padding:2rem 0;
+    color:var(--ink-soft);
+    font-style:italic;
+    font-family:"Fraunces", serif;
+  }
+
+  .cta-row{margin-top:2.5rem; display:flex; gap:1.2rem; flex-wrap:wrap;}
+  .cta{
+    font-family:"Fraunces", serif; font-style:italic;
+    color:var(--pine); text-decoration:none;
+    border-bottom:1px solid var(--pine); padding-bottom:2px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="home-link" href="index.html">&larr; The Psychology of Scarcity</a>
+  <div class="header-image">
+    <img src="images/memorybank-header.jpg" alt="A key held close in the palm of a hand, black and white">
+  </div>
+  <p class="kicker">Your own evidence, kept close</p>
+  <h1>Your Memory Bank</h1>
+  <p class="lede">Headlines and milestones miss most of what actually changes in you. This is a place to log the smaller evidence — a decision, a setback, a recovery — and tie it back to a framework worth remembering.</p>
+  <p class="lede">Ask yourself: what can I do, notice or recover from differently now than I could before?</p>
+
+  <p class="notice">Entries save to this browser only — nothing is sent anywhere. Clearing your browser data, or opening this on another device, starts a fresh bank.</p>
+
+  <form id="entryForm">
+    <div class="row-2">
+      <div class="field">
+        <label for="situation">What happened</label>
+        <input type="text" id="situation" placeholder="A short label for the situation" required>
+      </div>
+      <div class="field">
+        <label for="tag">Tag it to a framework</label>
+        <select id="tag"></select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="reflection">Reflect on it</label>
+      <textarea id="reflection" placeholder="What's the fact, what's the story, what did you notice?"></textarea>
+    </div>
+    <div class="field">
+      <label for="different">What's different about the person meeting this now?</label>
+      <input type="text" id="different" placeholder="Optional — one line is enough">
+      <p class="hint">From Still Building — the same question, asked of your own history.</p>
+    </div>
+    <button type="submit" class="save">Add to the bank</button>
+  </form>
+
+  <h2 class="section-title">Your entries</h2>
+  <p class="section-sub" id="entryCount">No entries yet this visit.</p>
+  <ul class="log" id="log"></ul>
+  <p class="empty-log" id="emptyLog">Nothing logged yet. The first entry doesn't need to be dramatic — start with whatever's live for you today.</p>
+
+  <div class="cta-row">
+    <a class="cta" href="toolbox.html">Back to the full toolbox &rarr;</a>
+    <a class="cta" href="share-your-progress.html">Want to share this publicly instead? &rarr;</a>
+  </div>
+
+</div>
+
+<script>
+const FRAMEWORK_NAMES = [
+  "The Milk Carton","Scarcity Response","The Scarcity Loop","Fact and Story","Borrowed Wisdom",
+  "Earned Wisdom","Think \u2192 Test \u2192 Reflect \u2192 Adjust","Taking the Path / Walking the Path",
+  "Building Your Own Path","Antifragility","Oscillation","Biological Time","Artificial Time",
+  "The Perception Gap","The Comparison Trap","Enough","Ego as Idol / Ego as Tool",
+  "Character as Capacity","Investment or Exploitation?","Protecting What Is Harder to Replace",
+  "The Memory Bank","Still Building"
+];
+
+const tagSelect = document.getElementById("tag");
+FRAMEWORK_NAMES.forEach(name=>{
+  const opt = document.createElement("option");
+  opt.value = name;
+  opt.textContent = name;
+  tagSelect.appendChild(opt);
+});
+
+const STORAGE_KEY = "psychology-of-scarcity:memory-bank";
+
+function loadEntries(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  }catch(err){
+    console.error("Could not read the memory bank:", err);
+    return [];
+  }
+}
+
+function saveEntries(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  }catch(err){
+    console.error("Could not save to the memory bank:", err);
+  }
+}
+
+let entries = loadEntries();
+
+const form = document.getElementById("entryForm");
+const logEl = document.getElementById("log");
+const emptyLogEl = document.getElementById("emptyLog");
+const countEl = document.getElementById("entryCount");
+
+form.addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const situation = document.getElementById("situation").value.trim();
+  if(!situation) return;
+
+  const entry = {
+    id: Date.now() + "-" + Math.random().toString(36).slice(2,7),
+    date: new Date().toLocaleDateString(undefined, {day:"numeric", month:"short", year:"numeric"}),
+    situation,
+    tag: tagSelect.value,
+    reflection: document.getElementById("reflection").value.trim(),
+    different: document.getElementById("different").value.trim()
+  };
+
+  entries.unshift(entry);
+  saveEntries();
+  render();
+  form.reset();
+  document.getElementById("situation").focus();
+});
+
+logEl.addEventListener("click", (e)=>{
+  const btn = e.target.closest(".log-remove");
+  if(!btn) return;
+  entries = entries.filter(entry => entry.id !== btn.dataset.id);
+  saveEntries();
+  render();
+});
+
+function render(){
+  logEl.innerHTML = "";
+  emptyLogEl.style.display = entries.length ? "none" : "block";
+  countEl.textContent = entries.length
+    ? entries.length + (entries.length===1 ? " entry saved." : " entries saved.")
+    : "No entries yet.";
+
+  entries.forEach(entry=>{
+    const li = document.createElement("li");
+    li.className = "log-entry";
+    li.innerHTML = `
+      <button class="log-remove" data-id="${entry.id}">Remove</button>
+      <div class="log-meta">
+        <span class="log-date">${entry.date}</span>
+        <span class="log-tag">${entry.tag}</span>
+      </div>
+      <p class="log-situation">${entry.situation}</p>
+      ${entry.reflection ? `<p class="log-reflection">${entry.reflection}</p>` : ""}
+      ${entry.different ? `<p class="log-different"><strong>What's different now:</strong> ${entry.different}</p>` : ""}
+    `;
+    logEl.appendChild(li);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
